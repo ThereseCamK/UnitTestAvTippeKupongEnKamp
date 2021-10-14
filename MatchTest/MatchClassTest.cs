@@ -69,6 +69,38 @@ namespace MatchTest
             Assert.AreEqual(expectedDescription, actualDescription);
         }
         [Test]
+        public void TestHjemmemål()
+        {
+
+            var match = new Match();
+
+            match.Goals(true);
+            match.Goals(true);
+            
+
+
+            var actualDescription = match.ScoreText();
+            var expectedDescription = "Stillingen er: 2 - 0";
+
+            Assert.AreEqual(expectedDescription, actualDescription);
+        }
+        [Test]
+        public void TestBorteMål()
+        {
+
+            var match = new Match();
+
+            match.Goals(false);
+            match.Goals(false);
+
+
+
+            var actualDescription = match.ScoreText();
+            var expectedDescription = "Stillingen er: 0 - 2";
+
+            Assert.AreEqual(expectedDescription, actualDescription);
+        }
+        [Test]
         public void TestTippetFlereMålHjemme()
         {
 
@@ -85,7 +117,24 @@ namespace MatchTest
 
             Assert.AreEqual(expectedDescription, actualDescription);
         }
+        [Test]
+        public void TestStop()
+        {
 
+            var match = new Match();
+
+            match.Goals(false);
+            match.Goals(true);
+            match.Goals(true);
+            match.Goals(true);
+            match.matchIsStoped();
+
+
+            var actual = match.matchIsRunning;
+            var expected = false;
+
+            Assert.AreEqual(expected, actual);
+        }
 
 
     }
